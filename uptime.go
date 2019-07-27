@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"syscall"
+	"golang.org/x/sys/unix"
 	"time"
 )
 
@@ -21,8 +21,8 @@ func (u Uptime) String() string {
 }
 
 func uptime() (u Uptime) {
-	sysinfo := syscall.Sysinfo_t{}
-	err := syscall.Sysinfo(&sysinfo)
+	sysinfo := unix.Sysinfo_t{}
+	err := unix.Sysinfo(&sysinfo)
 	if err != nil {
 		panic(err)
 	}
